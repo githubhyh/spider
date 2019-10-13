@@ -135,7 +135,7 @@ public class WebUtil {
 				connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 				InputStream inputStream = connection.getInputStream();
 				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-				File temp = new File("D:\\huyuhao\\spider\\images\\download\\" + uuid + ".jpg");
+				File temp = new File("E:\\MyResource\\img\\imgs\\" + uuid + ".jpg");
 				DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(temp));
 				byte[] buffer = new byte[4096];
 				int count = 0;

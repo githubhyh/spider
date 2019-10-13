@@ -9,8 +9,8 @@ public class ManageTask implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) {
-			new ImagSourceTask().parse();
 			new PathSourceTask().parse();
+			new ImagSourceTask().parse();
 			try {
 				Thread.sleep(60000);
 			} catch (InterruptedException e) {
