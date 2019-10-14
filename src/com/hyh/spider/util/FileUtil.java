@@ -1,9 +1,13 @@
 package com.hyh.spider.util;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,5 +35,22 @@ public class FileUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static List<String> readSource(String sourcePath) {
+		List<String> paths = new ArrayList<String>();
+		File file = new File(sourcePath);
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String data = "default";
+			while ((data = reader.readLine()) != null) {
+				paths.add(data);
+			}
+			reader.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return paths;
 	}
 }

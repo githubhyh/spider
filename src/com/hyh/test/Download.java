@@ -11,16 +11,27 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import com.hyh.spider.WebUtil;
+import com.hyh.spider.entity.URLSource;
+import com.hyh.spider.task.DownloadTask;
+import com.hyh.spider.util.FileUtil;
 
 
 public class Download {
 	public static void main(String[] args) throws IOException {
-		download("D:\\huyuhao\\spider\\images\\imgSrc.txt");
+		//download("E:\\MyResource\\img\\imgSrc.txt");
+		List<String> readSource = FileUtil.readSource("E:\\MyResource\\img\\imgSrc.txt");
+		URLSource source2 = URLSource.getInstance();
+		for (String source : readSource) {
+			source2.addImg(source);
+		}
+		
+		new DownloadTask().run();
 	}
 	
 	public static void download (String source) {
@@ -35,7 +46,7 @@ public class Download {
 				urlConnection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 				InputStream inputStream = urlConnection.getInputStream();
 				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-				File temp = new File("D:\\huyuhao\\spider\\images\\download1\\" + uuid + ".jpg");
+				File temp = new File("E:\\MyResource\\img\\imgs\\" + uuid + ".jpg");
 				DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(temp));
 				byte[] buffer = new byte[4096];
 				int count = 0;

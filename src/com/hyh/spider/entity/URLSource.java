@@ -22,7 +22,7 @@ public class URLSource {
 	/**
 	 * <p>定义每个线程获取资源数量，4条记录</p>
 	 * */
-	private final static int DEFAULT_URL_NUMBER = 4;
+	private final static int DEFAULT_URL_NUMBER = 50;
 	
 	/**
 	 * instauction 网页解析较慢，资源定位2
