@@ -11,6 +11,7 @@ public class MyThread extends Thread {
 		System.out.println("i will shutdown");
 	}
 	
+	@SuppressWarnings("unused")
 	public void test() {
 		ScheduledExecutorService newSingleThreadScheduledExecutor 
 		= Executors.newSingleThreadScheduledExecutor();
