@@ -47,4 +47,10 @@ public class ParseImage extends AbstractHtmlParse {
 		driver.quit();
 		return urls;
 	}
+
+	@Override
+	public void parseURL(String url) {
+		// TODO Auto-generated method stub
+		
+	}
 }

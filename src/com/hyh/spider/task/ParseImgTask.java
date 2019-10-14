@@ -32,7 +32,7 @@ public class ParseImgTask implements Runnable {
 		for (String url : urls) {
 			Parse parseImage = new ParseImage();
 			Set<String> images = parseImage.parseImage(url);
-			FileUtil.writeToFile(images, "E:\\MyResource\\img\\imgSrc.txt");
+			FileUtil.writeToFile(images, "D:\\huyuhao\\spider\\images\\imgSrc.txt");
 		}
 	}
 

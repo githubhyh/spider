@@ -8,4 +8,5 @@ import java.util.Set;
  * */
 public interface Parse {
 	public Set<String> parseImage(String url);
+	public void parseURL(String url);
 }
