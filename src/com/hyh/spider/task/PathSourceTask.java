@@ -9,32 +9,38 @@ import com.hyh.spider.util.ThreadPoolUtil;
 public class PathSourceTask extends Task implements Runnable {
 	private URLSource source = URLSource.getInstance();
 	private ExecutorService pool = ThreadPoolUtil.getInstance();
-	
-	public void parse() {
-		List<String> htmlSource = getHtmlSource();
-		System.out.println(htmlSource);
-		System.out.println("执行资源解析........"+pool);
-		pool.submit(()->{new ParsePathTask(htmlSource).run();});
+	private ThreadLocal<Boolean> flag = new ThreadLocal<Boolean>();
+	private volatile boolean flag1 = true;
+	public PathSourceTask() {
+		// TODO Auto-generated constructor stub
+		flag.set(Boolean.TRUE);
+		System.out.println("PathSourceTask初始化"+flag.get());
 	}
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while (true) {
+		while (flag1) {
 			List<String> htmlSource = getHtmlSource();
 			System.out.println(htmlSource);
-			System.out.println("执行资源解析........"+pool);
 			pool.submit(()->{new ParsePathTask(htmlSource).run();});
+			System.out.println("执行资源解析........"+pool);
 			try {
-				Thread.sleep(120000);
+				Thread.sleep(160000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("资源解析睡眠进程中断，已经退出。。。");
 			}
 		}
 	}
 	
 	public List<String> getHtmlSource() {
 		return source.getHtmlPaths();
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		flag1 = false;
 	}
 }

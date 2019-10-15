@@ -18,11 +18,12 @@ public class URLSource {
 	 */
 	private Set<String> imgPaths = new HashSet<String>();
 	private Set<String> htmlPaths = new HashSet<String>();
+	private String currentPath = new String();
 	
 	/**
 	 * <p>定义每个线程获取资源数量，4条记录</p>
 	 * */
-	private final static int DEFAULT_URL_NUMBER = 50;
+	private final static int DEFAULT_URL_NUMBER = 2;
 	
 	/**
 	 * instauction 网页解析较慢，资源定位2
@@ -112,11 +113,18 @@ public class URLSource {
 	
 	public synchronized void addPage(String url) {
 		htmlPaths.add(url);
+		setCurrentPath(url);
 	}
 	
 	public synchronized void addImg(Set<String> urls) {
 		for (String url : urls) {
 			imgPaths.add(url);
 		}
+	}
+	public String getCurrentPath() {
+		return currentPath;
+	}
+	public void setCurrentPath(String currentPath) {
+		this.currentPath = currentPath;
 	}
 }

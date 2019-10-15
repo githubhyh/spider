@@ -12,7 +12,7 @@ import java.util.List;
 import com.hyh.spider.entity.Image;
 
 public class Test {
-	@SuppressWarnings({ "resource", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		List<String> list = new ArrayList<String>();
 		list.add("http1");
