@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.hyh.spider.util.FileUtil;
 import com.hyh.spider.util.URLSourceUtil;
 
 /**
@@ -23,7 +24,7 @@ public class URLSource {
 	/**
 	 * <p>定义每个线程获取资源数量，4条记录</p>
 	 * */
-	private final static int DEFAULT_URL_NUMBER = 2;
+	private final static int DEFAULT_URL_NUMBER = 3;
 	
 	/**
 	 * instauction 网页解析较慢，资源定位2
@@ -126,5 +127,23 @@ public class URLSource {
 	}
 	public void setCurrentPath(String currentPath) {
 		this.currentPath = currentPath;
+	}
+	
+	public void init() {
+		System.out.println("系统资源初始化......");
+		String currentHTMLSourceFilePath = FileSource.getCurrentHTMLSourceFilePath();
+    	String currentResourceFilePath = FileSource.getCurrentResourceFilePath();
+    	Set<String> htmls = FileUtil.readSourceAsSet(currentHTMLSourceFilePath);
+    	Set<String> imgs = FileUtil.readSourceAsSet(currentResourceFilePath);
+    	if (htmls.isEmpty() || htmls == null) {
+    		System.out.println("没有资源网页初始化，请检查......");
+    	}else {
+    		setImgPaths(imgs);
+    	}
+    	if (htmls.isEmpty() || htmls == null) {
+    		System.out.println("目标资源进行空初始化......");
+    	}else {
+    		setHtmlPaths(htmls);
+    	}	
 	}
 }

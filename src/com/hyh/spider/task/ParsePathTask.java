@@ -52,7 +52,7 @@ public class ParsePathTask implements Runnable {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("网页资源解析中断，进程退出......");
 		}
 		int num = 1;
 		long count = 0;
@@ -62,7 +62,7 @@ public class ParsePathTask implements Runnable {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("网页资源解析中断，进程退出......");
 			}
             ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+(num * 1000)+")");
             long height = (long)((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight;");

@@ -1,12 +1,12 @@
 package com.hyh.spider.parse.htmlparse;
 
-import java.util.Set;
+import com.hyh.spider.entity.Image;
 
 /**
  * @author hu.yuhao
  * instruction 解析接口
  * */
 public interface Parse {
-	public Set<String> parseImage(String url);
+	public Image parseImage(String url);
 	public void parseURL(String url);
 }

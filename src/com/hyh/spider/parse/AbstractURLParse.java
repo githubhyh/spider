@@ -1,9 +1,8 @@
 package com.hyh.spider.parse;
 
-import java.util.Set;
-
 import org.openqa.selenium.WebDriver;
 
+import com.hyh.spider.entity.Image;
 import com.hyh.spider.parse.htmlparse.Parse;
 import com.hyh.spider.util.WebDriverUtil;
 
@@ -18,7 +17,7 @@ public abstract class AbstractURLParse implements Parse {
 	}
 
 	@Override
-	public Set<String> parseImage(String url) {
+	public Image parseImage(String url) {
 		// TODO Auto-generated method stub
 		return null;
 	}

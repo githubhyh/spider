@@ -1,8 +1,10 @@
 package com.hyh.spider.task;
 
 import java.util.List;
-import java.util.Set;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hyh.spider.entity.FileSource;
+import com.hyh.spider.entity.Image;
 import com.hyh.spider.parse.ParseImage;
 import com.hyh.spider.parse.htmlparse.Parse;
 import com.hyh.spider.util.FileUtil;
@@ -29,10 +31,18 @@ public class ParseImgTask implements Runnable {
 	}
 	
 	public void parse(List<String> urls) {
+		ObjectMapper mapper = new ObjectMapper();
 		for (String url : urls) {
-			Parse parseImage = new ParseImage();
-			Set<String> images = parseImage.parseImage(url);
-			FileUtil.writeToFile(images, "D:\\huyuhao\\spider\\images\\imgSrc.txt");
+			try {
+				Parse parseImage = new ParseImage();
+				Image image = parseImage.parseImage(url);
+				String valueAsString = mapper.writeValueAsString(image);
+				//获取路径
+				FileUtil.saveSource(valueAsString+"\n", FileSource.getImgFilePath(), true);
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("json转化错误！！！");
+			}
 		}
 	}
 

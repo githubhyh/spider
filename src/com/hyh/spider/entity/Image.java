@@ -1,7 +1,7 @@
 package com.hyh.spider.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * a图片信息，包含一个相册集
@@ -12,17 +12,23 @@ public class Image implements Serializable {
 	 */
 	private static final long serialVersionUID = -1817460996219611876L;
 	private String title;
-	private List<String> imgs;
+	private Collection<String> imgs;
+	
+	public Image(String title, Collection<String> imgs) {
+		this.title = title;
+		this.imgs = imgs;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public List<String> getImgs() {
+	public Collection<String> getImgs() {
 		return imgs;
 	}
-	public void setImgs(List<String> imgs) {
+	public void setImgs(Collection<String> imgs) {
 		this.imgs = imgs;
 	}
 }

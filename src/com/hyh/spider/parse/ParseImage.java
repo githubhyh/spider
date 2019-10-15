@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.hyh.spider.entity.Image;
 import com.hyh.spider.parse.htmlparse.AbstractHtmlParse;
 
 /**
@@ -23,7 +24,7 @@ public class ParseImage extends AbstractHtmlParse {
 	/**
 	 * instruction 如果参数有一个为空，则抛出null异常
 	 * */
-	public Set<String> getImagURL(WebDriver driver, String url){
+	public Image getImagURL(WebDriver driver, String url){
 		if (driver == null||url == null) {
 			try {
 				throw new NullPointerException("驱动或url为空。。。");
@@ -33,7 +34,8 @@ public class ParseImage extends AbstractHtmlParse {
 			}		
 		}
 		WebDriver page = LoadHtml.loadHtmlByPullPage(driver, url);
-		System.out.println("parseimage:"+page.getTitle());
+		String title = page.getTitle();
+		System.out.println("parseimage:"+title);
 		List<WebElement> elements = page.findElements(By.cssSelector("img"));
 		String result = "default";
 		Set<String> urls = new HashSet<String>();
@@ -45,7 +47,7 @@ public class ParseImage extends AbstractHtmlParse {
 			}
 		}
 		driver.quit();
-		return urls;
+		return new Image(title, urls);
 	}
 
 	@Override

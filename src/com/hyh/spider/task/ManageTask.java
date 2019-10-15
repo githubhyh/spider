@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.hyh.spider.entity.FileSource;
 import com.hyh.spider.entity.URLSource;
 import com.hyh.spider.util.FileUtil;
 import com.hyh.spider.util.ThreadPoolUtil;
@@ -38,7 +39,7 @@ public class ManageTask {
 	}
 	
 	//shutdown时将内存资源写入文件保存，下一次启动继续执行
-	public static void shutdown(String savePath) {
+	public static void shutdown() {
 		URLSource source = URLSource.getInstance();
 		//关闭步骤
 		//第一步,停止产生新任务
@@ -51,10 +52,15 @@ public class ManageTask {
 		List<String> htmlPaths = source.getHtmlPaths();
 		String currentPath = source.getCurrentPath();
 		if (htmlPaths==null || htmlPaths.size() == 0) {
-			FileUtil.saveSource(currentPath, savePath);
+			FileUtil.saveSource(currentPath, FileSource.getCurrentHTMLSourceFilePath(), false);
 		}else {
-			FileUtil.saveSource(htmlPaths, savePath);
+			FileUtil.saveSource(htmlPaths, FileSource.getCurrentHTMLSourceFilePath(), false);
 		}
-		//第三步，关闭线程池
+		List<String> imgPaths = source.getImgPaths();
+		if (imgPaths==null || imgPaths.isEmpty()) {
+			System.out.println("目标资源为空！！！");
+		}else {
+			FileUtil.saveSource(imgPaths, FileSource.getCurrentResourceFilePath(), false);
+		}
 	}
 }

@@ -28,7 +28,7 @@ public class ImagSourceTask extends Task implements Runnable {
 			});
 			System.out.println("执行图片解析........" + pool);
 			try {
-				Thread.sleep(50000);
+				Thread.sleep(40000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				System.out.println("图片解析睡眠进程中断，已经退出。。。");

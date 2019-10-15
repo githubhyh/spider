@@ -17,13 +17,9 @@ public class Test {
 		List<String> list = new ArrayList<String>();
 		list.add("http1");
 		list.add("http2");
-		Image image = new Image();
-		image.setTitle("test");
-		image.setImgs(list);
+		Image image = new Image("test", list);
 		
-		Image image1 = new Image();
-		image.setTitle("test1");
-		image.setImgs(list);
+		Image image1 = new Image("test1", list);
 		FileOutputStream fileOutputStream = new FileOutputStream(new File("D:\\huyuhao\\spider\\images\\obj.txt"));
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		objectOutputStream.writeObject(image);

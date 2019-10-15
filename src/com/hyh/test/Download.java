@@ -7,16 +7,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.UUID;
 
-import javax.net.ssl.HttpsURLConnection;
-
-import com.hyh.spider.WebUtil;
 import com.hyh.spider.entity.URLSource;
 import com.hyh.spider.task.DownloadTask;
 import com.hyh.spider.util.FileUtil;

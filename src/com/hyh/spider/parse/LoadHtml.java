@@ -35,7 +35,7 @@ public class LoadHtml extends AbstractHtmlLoader {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("网页加载被终止，退出进程......");
 			}
             ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+(num * 1000)+")");
             long height = (long)((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight;");
